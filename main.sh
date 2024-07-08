@@ -3,10 +3,14 @@ contigs_v=$2
 table3_m=$3
 table3_v=$4
 output_path=$5
-
 bins_folder=$6
 t=$7
 quality_summary=$8
+genomad_db=$9
+fastq1_m=${10}
+fastq2_m=${11}
+fastq1_v=${12}
+fastq2_v=${13}
 
 #comined_virus_metagenome_contig_with_tags
 #first we tag metagenome and virus contigs with '_m' and '_v'
@@ -77,7 +81,6 @@ echo "@@@@@@@@@###################@@@@@@@@@@"
 echo "@@@@@@@@@###################@@@@@@@@@@"
 
 
-
 if [ "$read1" = "-h" ] ; then
 	echo 'Usage information: 1) read1 = Forward paired-end file (FASTQ)
 	2) read2 = Reverse paired-end file (FASTQ)
@@ -89,43 +92,83 @@ if [ "$read1" = "-h" ] ; then
 else
 	# Purify contigs
 
-	source activate $USER_ENV
 	log_purify_contigs=$log_folder/purify_contigs.log
 	if [ -f "$log_purify_contigs" ] ; then
 		echo "$log_purify_contigs exists. Skip preprocessing..."
 	else
 		 echo "$log_purify_contigs does not exist"
 		 echo "Starting Purify Virus Contigs $(date) ..."
-		 echo "./purify_contigs.sh $contigs_v $checkv_purify_contigs $t"
-		 $DIR/purify_virus_contigs.sh $contigs_v $checkv_purify_contigs $t
+		 echo "./purify_contigs.sh $contigs_v $checkv_purify_contigs $t $genomad_db"
+	      	 $DIR/purify_virus_contigs.sh $contigs_v $checkv_purify_contigs $t $genomad_db
 		 echo "completed pre-processing at $(date)"
 		 touch $log_purify_contigs
 	fi
 	echo ' '
 	echo '###########################################################################################################'
-	source deactivate
 	
 	echo "Starting Purify virus bins.Collect bins from V dataset,combine into bins.fa,perform checkv"
-
-	source activate $USER_ENV
 
 	log_purify_bins=$log_folder/purify_bins.log
 
 	contig_fasta_summary_file_determined=$checkv_purify_contigs/contigs_determined.csv
-
+	contig_fasta_summary_file_not_determined=$checkv_purify_contigs/contigs_not_determined.csv
 	if [ -f "$log_purify_bins" ]; then
                 echo "$log_purify_bins exists. Skip assembly and binning..."
         else
                 echo "$log_purify_bins does not exist"
                 echo "starting Purify Bins $(date)..."
 	 	echo "$DIR/purify_virus_bins.sh $bins_folder $checkv_purify_bins $t"
-		$DIR/purify_virus_bins.sh $bins_folder $checkv_purify_bins $t $contig_fasta_summary_file_determined $contigs_v
+		$DIR/purify_virus_bins.sh $bins_folder $checkv_purify_bins $t $contig_fasta_summary_file_determined $contig_fasta_summary_file_not_determined $contigs_v
 		touch $log_purify_bins
 	fi
-	source deactivate
+	#conda deactivate
 	echo ' '
 	echo '###########################################################################################################'
+
+
 	
+#Post processing viral
+	log_post_processing_virus=$log_folder/post_processing_virus.log
+	checkm_bins_folder=$bins_folder
+
+        if [ -f "$log_post_processing" ]; then
+                echo "$log_post_processing exists. Skip assembly and binning..."
+        else
+                echo "$log_post_processing does not exist"
+                echo "Post Processing $(date)..."
+                echo "$DIR/post_processing.sh $checkm_bins_folder $t $output_path"
+                #$DIR/post_processing.sh $checkm_bins_folder $t $output_folder
+		$DIR/post_processing_virus.sh $checkm_bins_folder $t $checkv_purify_bins
+		touch $log_post_processing_virus
+        fi
+#        source deactivate
+	echo 'Post processing complete'
+        echo ' '
+        echo '###########################################################################################################'
+#source deactivate
+
+#Post processing metagenome
+        log_post_processing_metagenome=$log_folder/post_processing_metagenome.log
+        checkm_bins_folder=$bins_folder
+
+        if [ -f "$log_post_processing" ]; then
+                echo "$log_post_processing exists. Skip assembly and binning..."
+        else
+                echo "$log_post_processing does not exist"
+                echo "Post Processing $(date)..."
+                echo "$DIR/post_processing.sh $checkm_bins_folder $t $output_path $fastq1_v $fastq2_v $contigs_v"
+                #$DIR/post_processing.sh $checkm_bins_folder $t $output_folder
+		$DIR/post_processing_bacteria.sh $checkm_bins_folder $t $checkv_purify_bins $fastq1_v $fastq2_v $contigs_v
+                touch $log_post_processing_metagenome
+        fi
+#        source deactivate
+        echo 'Post processing complete'
+        echo ' '
+        echo '###########################################################################################################'
+
+
+
+source deactivate
 #Start Iter 0
 #echo "Starting Round0: Cleaning Contig file from V dataset for first time with CheckV"
 
