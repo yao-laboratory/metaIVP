@@ -14,7 +14,7 @@ def combine_bins(bin_directory,output_directory):
     bin_sequences = {}
 
     # Iterate over each bins.fa file in the directory
-    print("this is a test command")
+
     for bin_filename in os.listdir(bin_directory):
 
         if bin_filename.startswith('bins.') and bin_filename.endswith('.fa'):
