@@ -18,11 +18,11 @@ mpl.rcParams['pdf.fonttype'] = 42
 mpl.rcParams['ps.fonttype'] = 42
 mpl.rcParams['font.family'] = 'Arial'
 
-def pca_analysis(input_df_filename, metadata_filename,output_directory):
+def pca_analysis(input_df, metadata,output_directory):
     
     #Read input dataframe and MetaData
-    data=pd.read_csv(input_df_filename,index_col=0)
-    metadata=pd.read_csv(metadata_filename)
+    data=pd.read_csv(input_df,index_col=0)
+    metadata=pd.read_csv(metadata)
     
     #Set Markers and colors
     colors=metadata['Color']
@@ -61,39 +61,39 @@ def pca_analysis(input_df_filename, metadata_filename,output_directory):
     final_pca_output=os.path.join(output_directory,"PCA_PLOT.pdf")
     plt.savefig(final_pca_output, bbox_inches='tight')
     
-def pydeseq2(input_df_filename,metadata_filename,output_directory,threads):
+def pydeseq2(input_df,metadata,output_directory,threads):
     #Read input dataframe and MetaData
     print("Threads is",threads)
-    data=pd.read_csv(input_df_filename,index_col=0)
+    data=pd.read_csv(input_df,index_col=0)
     print("data is")
     print(data.head(5))
-    metadata_raw=pd.read_csv(metadata_filename)
-    #somehow, pydeseq2 requires the same exact order of sample names in both count data and metadata
-
-    newmetadata=pd.DataFrame([])
-    for samplename in data.columns:
-        onerow=metadata_raw.loc[metadata_raw['Sample']==samplename]
-        newmetadata=pd.concat([newmetadata, onerow])
-    metadata=newmetadata
-
+    metadata=pd.read_csv(metadata)
 
 #   #Create list to get metadata_column name and normalizer value for that column
+
  #   metadata_column=list()
+
  #   normalizer=list()
+
     #Append the list
+
   #  for i in metadata.index:
+
    #     metadata_column.append(metadata['Sample'][i])
+
     #    normalizer.append(metadata['normalizer'][i])
+
     #Multiply the list with normalized value
-   #for i in metadata_column:
+
+    #for i in metadata_column:
+
      #   for j in normalizer:
+
       #      data[i] = data[i].multiply(j)
     #convert all values to int, since dds wont accept float values.
     counts=data.astype(int)
-    #commeting sum of counts line for relative abundance
     counts = counts[counts.sum(axis = 1) > 0]
     counts = counts.T
-
     print("counts is")
     print(counts.head(5))
     #convert index to list
@@ -111,65 +111,55 @@ def pydeseq2(input_df_filename,metadata_filename,output_directory,threads):
       #Create list to get metadata_column name and normalizer value for that column
 
 
+
     metadata_column=list()
+
+  
+
     normalizer=list()
+
+
+
     #Append the list
+
+
+
     for i in metadata.index:
+
+
+
         metadata_column.append(metadata['Sample'][i])
+
+
+
         normalizer.append(metadata['normalizer'][i])
+
+
+
     #Multiply the list with normalized value
-    #This normalized multiplication is incorrect.
 
 
-   
-   #for i in metadata_column:
-   #     for j in normalizer:
-   #         data[i] = data[i].multiply(j)
-    for i in range(0,len(metadata_column)):
-        a = metadata_column[i]
-        b = normalizer[i]
-        data[a] = data[a].multiply(b)
+
+    for i in metadata_column:
+
+
+
+        for j in normalizer:
+
+
+
+            data[i] = data[i].multiply(j)
     unique_conditions = metadata['Condition'].unique()
-
-    #new code
-    normalized_filename="Normalized_Table.csv"
-    final_normalized_filepath=os.path.join(output_directory,normalized_filename)
-    data.to_csv(final_normalized_filepath) #double output type
-    pca_analysis(final_normalized_filepath, metadata_filename,output_directory)
-
-
-   #end of new code
-#    print("conditions are: "+",".join(unique_conditions))
+   
+    print("conditions are: "+",".join(unique_conditions))
     samples = metadata['Sample']
     metadata = metadata.set_index('Sample')
 
     print(metadata.head(5))
 
+    #DDS
+#    unique_conditions = metadata['Condition'].unique()
 
-    #convert all values to int, since dds wont accept float values.
-    counts=data.astype(int)
-    #commeting sum of counts line for relative abundance
-    counts = counts[counts.sum(axis = 1) > 0]
-    counts = counts.T
-    print("--------")
-    print(counts.head(5))
-    print(counts.columns[0:3])
-    #counts = counts.set_index(counts.columns[0])
-    counts_index_list = counts.index.to_list()
-    print(counts_index_list)
-    for i in metadata.index:
-        if i not in counts_index_list:
-            print(str(i)+"  not in the counts index list")
-
-    for i in counts_index_list:
-        if i not in metadata.index.to_list():
-            print(str(i)+" not in the metadata index list")
-
-    print(len(set(counts_index_list)))
-    print("--------")
-    print("unique conditions are : ")
-    print(unique_conditions)
-    print(" counts is ",counts.head(5))
     dds = DeseqDataSet(counts=counts,
                        metadata=metadata,
                        design_factors="Condition")
@@ -185,7 +175,7 @@ def pydeseq2(input_df_filename,metadata_filename,output_directory,threads):
         for j in unique_conditions:
             if i!=j:
                 print("Start contrasting :"+ str(i)+"  "+str(j))
-                stat_res = DeseqStats(dds,  contrast = ('Condition',i,j))
+                stat_res = DeseqStats(dds, n_cpus=int(threads), contrast = ('Condition',i,j))
 
                 summary=stat_res.summary()
                 final_result_df=stat_res.results_df
