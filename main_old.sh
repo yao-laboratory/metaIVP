@@ -24,19 +24,6 @@ checkv_purify_contigs=$output_path/purify_virus_contigs
 checkv_purify_bins=$output_path/purify_virus_bins
 
 
-#output_directory_for_vhryme_binning_with_checkv_post_processing_virus
-#checkv_vhryme_pure_bins=$output_path/purify_vhryme_checkv_binning_OPTIONAL
-
-#changing output directory for vrhyme binning into purify_bins_folder
-checkv_vhryme_pure_bins=$checkv_purify_bins/purify_vhryme_checkv_binning
-
-#MetaIMP_Path="${contigs_m##*/}"
-#echo "$MetaIMP_Path"
-
-
-MetaIMP_Path="${contigs_m%/*}"
-echo "THIS IS THE METAIMP PATH"
-echo "$MetaIMP_Path"
 #combine all sequences from all contigs from all bins in a giant file
 #output_directory_checkv_run2=$output_path/checkv_round2
 
@@ -49,21 +36,22 @@ log_folder=$output_path/log_folder
 
 #create directories
 if [ ! -d "$output_path" ] ; then
+
         mkdir $output_path
+
 fi
 
 
 if [ ! -d "$checkv_purify_contigs" ] ; then
+
         mkdir $checkv_purify_contigs
+
 fi
 
 
 if [ ! -d "$checkv_purify_bins" ] ; then
-        mkdir $checkv_purify_bins
-fi
 
-if [ ! -d "$checkv_vhryme_pure_bins" ] ; then
-        mkdir $checkv_vhryme_pure_bins
+        mkdir $checkv_purify_bins
 
 fi
 
@@ -111,7 +99,7 @@ else
 		 echo "$log_purify_contigs does not exist"
 		 echo "Starting Purify Virus Contigs $(date) ..."
 		 echo "./purify_contigs.sh $contigs_v $checkv_purify_contigs $t $genomad_db $log_folder"
-		 $DIR/purify_virus_contigs.sh $contigs_v $checkv_purify_contigs $t $genomad_db $log_folder
+	      	 $DIR/purify_virus_contigs.sh $contigs_v $checkv_purify_contigs $t $genomad_db $log_folder
 		 echo "completed purify contigs at $(date)"
 		 touch $log_purify_contigs
 	fi
@@ -184,32 +172,4 @@ else
         echo ' '
         echo '###########################################################################################################'
 
-
-
-#Post processing viral bins
-	log_post_processing_virus_binning=$log_folder/post_processing_viral_binning.log
-	IVP_contigs_fasta=$checkv_purify_contigs/contigs_determined.fasta
-	IVP_contigs_csv=$checkv_purify_contigs/contigs_determined.csv
-	IMP_coverage_original=$MetaIMP_Path/coverage.txt
-	#IMP_coverage=$MetaIMP_Path/modified_coverage_for_vRhyme.tsv #this part is hard-coded for now, need to modify cov tsv from metaIMP in metaIVP. update for later
-	source activate $IVP_ENV
-	if [ -f "$log_post_processing_virus_binning" ]; then
-                echo "$log_post_processing_virus_binning exists. Skip assembly and binning..."
-
-        else
-		echo "$log_post_processing_virus_binning does not exist"
-		echo "Post Processing Virus binning starting at $(date)"
-
-
-		echo "$DIR/post_processing_virus_binning.sh $IVP_contigs_fasta $IMG_coverage $t $checkv_vhryme_pure_bins $log_folder $IVP_contigs_csv $IMP_coverage_original"
-		$DIR/post_processing_virus_binning.sh $IVP_contigs_fasta $t $checkv_vhryme_pure_bins $log_folder $IVP_contigs_csv $IMP_coverage_original
-		touch $log_post_processing_virus_binning
-		echo "completed post processing virus binning at $(date)"
-	fi
-	source deactivate 
-	echo " Post processing Viral Binnining complete"
-	echo " " 
-        echo '###########################################################################################################'
 fi
-
-
