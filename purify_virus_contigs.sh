@@ -70,7 +70,7 @@ if [ -f "$log_purify_contigs_genomad" ] ; then
 		genomad end-to-end --cleanup --splits $t $contigs_v $genomad_output $genomad_db
 		echo "genomad end-to-end --cleanup --splits $t $contigs_v $genomad_output $genomad_db"
 		echo "starting genomad $(date)..."
-		touch $log_purift_contigs_genomad
+		touch $log_purify_contigs_genomad
 	fi
 
 
