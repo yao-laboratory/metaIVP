@@ -63,8 +63,8 @@ echo "python $metaIVP_path/python_scripts/utility/filter_bin_from_vrhyme.py v_bi
 python $metaIVP_path/python_scripts/filter_bin_from_vrhyme.py v_bin -c $IVP_contigs_csv -m $membership_file -o $output_folder
 
 
-bins_determined_from_IVP_VRhyme=$output_folder/bin_determined.fasta
-final_checkv_for_virus_IVP_VRhyme=$output_folder/checkv_with_VRhyme/
+bins_determined_from_IVP_VRhyme=$output_folder/bin_vrhyme.fasta
+final_checkv_for_virus_IVP_VRhyme=$output_folder/checkv_with_VRhyme_bin/
 
 #if [ ! -f "$final_checkv_for_virus_IVP_VRhyme" ]; then
 #        mkdir $final_checkv_for_virus_IVP_VRhyme
