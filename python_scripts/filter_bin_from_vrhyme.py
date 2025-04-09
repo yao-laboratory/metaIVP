@@ -18,7 +18,7 @@ def create_vrhyme_bin(contigs,membership_file,output_directory):
     columns_to_keep=["seq","bin"]
     determined_merged_bins_vrhyme=determined_merged_contigs_vrhyme[columns_to_keep]
     concatenated_df = determined_merged_bins_vrhyme.groupby('bin', as_index=False).agg({'seq': ''.join})
-    output_bin_fasta=os.path.join(output_directory,"bin_determined.fasta")
+    output_bin_fasta=os.path.join(output_directory,"bin_vrhyme.fasta")
 
     # Write the DataFrame to a FASTA file
 
