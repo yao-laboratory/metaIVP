@@ -1,0 +1,2 @@
+Sample_number	Sample	Assembly_Path	Read_Path
+1	SRR12952107	/work/yaolab/shared/2023_Riverton/IMG_samples_JULY_2025/sample_SRR12952107/assembly_output_1/METASPADES/contigs.fasta	/work/yaolab/shared/2023_Riverton/IMG_samples_JULY_2025/sample_SRR12952107/assembly_output_1/SRR12952107_1.fastq.filtered_R1.fastq
