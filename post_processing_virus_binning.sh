@@ -49,7 +49,7 @@ else
 fi
 
 
-membership_file=$(find "$vrhyme_output" -type f -name "*.membership.tsv" | head -n 1)
+membership_file=$(find "$vrhyme_output" -maxdepth 1 -type f -name "*.membership.tsv" | head -n 1)
 
 # Check if membership_file was found file was found
 if [[ -z "$membership_file" ]]; then
