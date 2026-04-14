@@ -4,16 +4,31 @@
 
 
 ## 1. INTRODUCTION
-metaIVP is an integrated metagenomic pipeline which allows users to identify ...
-#mutations and their respective protein annotations using a pipeline model. In this document, we list out the steps to be followed by a user to successfully complete assembly and reference based methods of metagenomic analysis. Users can choose either the assembly or reference method to begin processing of two paired-end files provided as input in FASTA format.
+🧬 metaIVP
+Integrated Viral Purification and Analysis Pipeline for Metagenomes
+
+📖 Overview
+
+metaIVP is a modular and reproducible pipeline for viral genome identification, purification, and ecological interpretation from metagenomic assemblies.
+
+Unlike conventional workflows that operate at a single resolution, metaIVP performs iterative refinement at both contig and bin levels, enabling:
+Improved separation of viral and cellular signals
+Recovery of high-quality viral genomes
+Robust downstream analysis (annotation, host prediction, replication dynamics)
+
+🔬 Workflow
 
 <img src="./Figure1.svg" width="500" height="600"/>
 
+Key Design Principles
+🔁 Cross-scale purification (contig ↔ bin)
+🧠 Consensus classification across multiple tools
+🧩 Modular architecture
+📊 Biologically interpretable outputs
+
+
 -------------
 ## 2. INSTALLATION
-metaIMP requires a cocktail of Java, Python and Linux scripts in order to provide the most accurate analysis of user's metagenome data. Backend is based on Linux, which can be accessedusing any unix terminal.
-
-To download metaIMP from Github, use :
 
 ```
 git clone https://github.com/yao-laboratory/metaIVP
@@ -33,4 +48,79 @@ User can either run install.sh or refer to example_hcc_install.sh for creating a
 These are the required constants which the user needs to provide when submitting a job. Example job submission script for assembly and reference can be found
 in the "Example" folder. Users can provide path to databases in order to use their own dbs.
 
+
+2.1. Input
+Required inputs:
+| File        | Description                            |
+| ----------- | -------------------------------------- |
+| `--reads`   | Raw sequencing reads (`.fq`, optional) |
+| `--contigs` | Assembled contigs (`.fa`)              |
+| `--bins`    | Binned genomes (`.fa`)                 |
+
+
+
+2.2. Output
+metaIVP/
+├── run_metaIVP.sh              # main entry point
+├── scripts/
+│   ├── contig_purification.sh
+│   ├── bin_purification.sh
+│   ├── viral_refinement.sh
+│   ├── viral_analysis.sh
+│   └── nonviral_analysis.sh
+├── configs/
+│   └── config.yaml
+├── docs/
+│   └── pipeline.png
+├── examples/
+│   └── test_dataset/
+└── results/
+
+
+| Category        | Description                   |
+| --------------- | ----------------------------- |
+| Viral bins      | High-confidence viral genomes |
+| Non-viral bins  | Refined microbial MAGs        |
+| QC metrics      | Completeness, contamination   |
+| Annotation      | Functional & taxonomic        |
+| Host prediction | Virus-host interactions       |
+| Replication     | Growth rates (iRep)           |
+
+
+
+🔗 Related Pipelines
+metaIMP – integrated metagenomic processing
+MVP – metagenomic viral pipeline
+metaIVP extends these approaches with:
+Iterative purification
+Cross-resolution integration
+Enhanced viral bin recovery
+
+
+
+@article{metaIVP,
+  title   = {metaIVP: Integrated viral purification and analysis from metagenomes},
+  author  = {Yao Laboratory},
+  journal = {TBD},
+  year    = {202X}
+}
+
+🙏 Acknowledgements
+This pipeline integrates methods from:
+CheckV
+Genomad
+iPHoP
+vRhyme
+CheckM2
+iRep
+
+📬 Contact
+For questions or issues:
+👉 https://github.com/yao-laboratory/metaIVP/issues
+
+🧭 Roadmap
+ Snakemake / Nextflow implementation
+ Containerized version (Docker/Singularity)
+ Benchmark datasets
+ Visualization module
 
