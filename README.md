@@ -44,12 +44,12 @@ export $USER_ENVIRONMENT
 ```
 User can either run install.sh or refer to example_hcc_install.sh for creating a job.
 
-
 These are the required constants which the user needs to provide when submitting a job. Example job submission script for assembly and reference can be found
 in the "Example" folder. Users can provide path to databases in order to use their own dbs.
 
 
 2.1. Input
+
 Required inputs:
 | File        | Description                            |
 | ----------- | -------------------------------------- |
@@ -60,6 +60,9 @@ Required inputs:
 
 
 2.2. Output
+
+This section describes the output folder structure and provides description for important files
+
 metaIVP/
 ├── run_metaIVP.sh              # main entry point
 ├── scripts/
@@ -88,14 +91,27 @@ metaIVP/
 
 
 
-🔗 Related Pipelines
+2.3 Example commands
+
+The following commands can be used as an example to run metaIVP pipeline:
+
+
+A) Python:
+
+
+B) Slurm job:
+
+
+
+
+
+3. Related Pipelines
 metaIMP – integrated metagenomic processing
 MVP – metagenomic viral pipeline
 metaIVP extends these approaches with:
 Iterative purification
 Cross-resolution integration
 Enhanced viral bin recovery
-
 
 
 @article{metaIVP,
@@ -116,7 +132,8 @@ iRep
 
 📬 Contact
 For questions or issues:
-👉 https://github.com/yao-laboratory/metaIVP/issues
+https://github.com/yao-laboratory/metaIVP/issues
+
 
 🧭 Roadmap
  Snakemake / Nextflow implementation
