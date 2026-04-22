@@ -36,6 +36,7 @@ git clone https://github.com/yao-laboratory/metaIVP
 
 After the repo is cloned, user can run the following shell script to install their custom python environment.
 Note: Users must have 'conda' and 'mamba' installed in their systems before proceeding with installation. This is a prerequisite.
+
 ```
 export $USER_ENVIRONMENT
 
@@ -106,15 +107,22 @@ B) Slurm job:
 -------------
 ## 3. TUTORIAL
 
+
 ```
 STEP 0: Download fastq files from NCBI (http://ncbi.nlm.nih.gov)
+
+```
 
 
 ```
 fastq-dump --split-files SRR9205532
 
 ```
+
+
+```
 STEP 1: Update the stand alone job script with input parameters available in the example folder.
+```
 
 ```
 cd /metaIVP/example/
