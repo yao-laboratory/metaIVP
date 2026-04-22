@@ -124,6 +124,8 @@ fastq1=SRR9205532_1.fastq
 fastq2=SRR9205532_2.fastq
 sample_ID=SRR9205532
 threads=8
+```
+
 
 STEP 2: Submit job
 
