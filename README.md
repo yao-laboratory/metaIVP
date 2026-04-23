@@ -1,6 +1,15 @@
 # metaIVP
 # MetaIMP
 ------------
+## Table of Contents
+
+* [Introduction](#Introduction)
+
+* [Installation](#installation)
+
+* [Usage Examples](#usage-examples)
+
+* [Contact Information](#contact-information)
 
 
 ## 1. INTRODUCTION
