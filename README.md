@@ -3,9 +3,9 @@
 ------------
 ## Table of Contents
 
-* [Introduction](#Introduction)
+* [Introduction](##Introduction)
 
-* [Installation](#installation)
+* [Installation](##Installation)
 
 * [Usage Examples](#usage-examples)
 
