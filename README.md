@@ -13,10 +13,10 @@
 
 
 ## 1. INTRODUCTION
-🧬 metaIVP
+metaIVP
 Integrated Viral Purification and Analysis Pipeline for Metagenomes
 
-📖 Overview
+ Overview
 
 metaIVP is a modular and reproducible pipeline for viral genome identification, purification, and ecological interpretation from metagenomic assemblies.
 
@@ -25,15 +25,15 @@ Improved separation of viral and cellular signals
 Recovery of high-quality viral genomes
 Robust downstream analysis (annotation, host prediction, replication dynamics)
 
-🔬 Workflow
+ Workflow
 
 <img src="./Figure1.svg" width="500" height="600"/>
 
 Key Design Principles
-🔁 Cross-scale purification (contig ↔ bin)
-🧠 Consensus classification across multiple tools
-🧩 Modular architecture
-📊 Biologically interpretable outputs
+ Cross-scale purification (contig ↔ bin)
+ Consensus classification across multiple tools
+ Modular architecture
+ Biologically interpretable outputs
 
 
 -------------
