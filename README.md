@@ -150,7 +150,7 @@ This section describes the output folder structure and provides description for 
    |--PURIFY CONTIGS   
    |--LOG FOLDER 
 
-
+<pre>
 Output Dataframes:
 
 
