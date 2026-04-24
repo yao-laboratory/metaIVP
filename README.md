@@ -161,26 +161,7 @@ metaIVP OUTPUT FOLDER
    |--LOG FOLDER 
 </pre>
 
-<pre>
-metaIVP OUTPUT FOLDER
-   |--PURIFY BINS
-   |     |--
-   |
-   |
-   |
-   |--PURIFY CONTIGS
-   |--LOG FOLDER
 
-
-   metaIVP OUTPUT FOLDER
-   |--PURIFY BINS 
-   |     |-- 
-   |
-   |
-   |
-   |--PURIFY CONTIGS   
-   |--LOG FOLDER 
-</pre>
 
 Output Dataframes:
 
@@ -211,27 +192,4 @@ Enhanced viral bin recovery
   journal = {TBD},
   year    = {202X}
 }
-
--------------
-## 7. Acknowledgements
-This pipeline integrates methods from:
-CheckV
-Genomad
-iPHoP
-vRhyme
-CheckM2
-iRep
-
--------------
-## 8. Contact
-For questions or issues:
-https://github.com/yao-laboratory/metaIVP/issues
-
-
--------------
-## 8. Roadmap
-Snakemake / Nextflow implementation (v2)
-Containerized version (Docker/Singularity) (v2)
-Benchmark datasets (completed)
-Visualization module (v2)
 
