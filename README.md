@@ -91,18 +91,14 @@ B) Slurm job:
 -------------
 ## 3. TUTORIAL
 
-
 ```
 STEP 0: Download fastq files from NCBI (http://ncbi.nlm.nih.gov)
 
 ```
-
-
 ```
 fastq-dump --split-files SRR9205532
 
 ```
-
 
 ```
 STEP 1: Update the stand alone job script with input parameters available in the example folder.
@@ -174,7 +170,7 @@ Output Dataframes:
 
 
 -------------
-## 5. DEPENDENCIES & RELATED PIPELINES
+## 5. DEPENDENCIES 
 
 metaIMP – integrated metagenomic processing
 MVP – metagenomic viral pipeline
@@ -184,12 +180,59 @@ Cross-resolution integration
 Enhanced viral bin recovery
 
 -------------
-## 6. TIPS FOR USERS
+## 6. LOG FILE STRUCTURE
 
-@article{metaIVP,
-  title   = {metaIVP: Integrated viral purification and analysis from metagenomes},
-  author  = {Yao Laboratory},
-  journal = {TBD},
-  year    = {202X}
-}
+
+purify_contigs.log : 1) purify_contigs_checkv.log 2) purify_contigs_genomad.log
+
+
+
+purify_bins.log : 1) purify_bins_checkv.log 
+
+
+
+post_processing_non_virus.log : 1) post_processing_non_virus_samtools.log 2)post_processing_non_virus_binning.log 3) post_processing_non_virus_irep.log 4) post_processing_non_virus_checkm2.log
+
+
+
+post_processing_viral_binning.log: 1) post_processing_virus_checkv.log 2) post_processing_virus_genomad.log 3) post_processing_virus_iphop.log 4) post_processing_virus_binning_vrhyme.log 5) post_processing_virus_checkv_with_vrhyme.log
+
+
+
+
+#purify_contigs_checkv.log: Tracks quality checks on contigs during purification with CheckV.
+#purify_contigs_genomad.log: Logs contamination detection on contigs during purification using Genomad.
+#purify_contigs.log: General log for contig purification steps.
+
+
+#purify_contigs.log: General log for contig purification steps.
+	#purify_contigs_checkv.log: Tracks quality checks on contigs during purification with CheckV.
+	#purify_contigs_genomad.log: Logs contamination detection on contigs during purification using Genomad.
+
+#purify_bins.log: Records bin purification processes.
+	#purify_bins_checkv.log: Logs quality control of bins during purification using CheckV.
+    
+
+
+    #post_processing_non_virus.log: General log for non-viral post-processing steps.
+	#post_processing_non_virus_binning.log: Logs the binning process for non-viral genomic data.
+	#post_processing_non_virus_samtools.log: Logs alignment and mapping stats for non-viral data using samtools.
+	#post_processing_non_virus_checkm2.log: Records quality assessment of non-viral bins using CheckM2.
+	#post_processing_non_virus_irep.log: Tracks replication rate analysis on non-viral genomes with iRep.
+
+
+
+    #post_processing_virus.log: General log of viral genome post-processing steps.
+	#post_processing_virus_iphop.log: Logs phage-host interaction predictions with iPHoP.
+	#post_processing_virus_genomad.log: Records contamination detection on viral genomes with Genomad.
+	#post_processing_virus_checkv.log: Logs viral genome quality checks using CheckV.
+
+    #post_processing_viral_binning.log: Documents viral genome binning operations.
+
+	#post_processing_virus_binning_vrhyme.log
+
+-------------
+## 7.SPECIAL TIPS FOR USERS
+
+Utitity folder:
 
