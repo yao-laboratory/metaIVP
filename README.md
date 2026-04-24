@@ -140,7 +140,17 @@ STEP 3: Verify results
 ## 4. OUTPUT
 
 This section describes the output folder structure and provides description for important files/folders.
+
+<pre>metaIVP OUTPUT FOLDER
+   |--PURIFY BINS 
+   |     |-- 
+   |
+   |
+   |
+   |--PURIFY CONTIGS   
+   |--LOG FOLDER 
 <pre>
+
    metaIVP OUTPUT FOLDER
    |--PURIFY BINS 
    |     |-- 
@@ -150,7 +160,8 @@ This section describes the output folder structure and provides description for 
    |--PURIFY CONTIGS   
    |--LOG FOLDER 
 
-<pre>
+
+
 Output Dataframes:
 
 
