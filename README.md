@@ -133,24 +133,67 @@ STEP 3: Verify results
 This section describes the output folder structure and provides description for important files/folders.
 <pre>
 metaIVP OUTPUT FOLDER
-   |--PURIFY BINS 
-   |     |-- 
-   |
-   |
-   |
-   |--PURIFY CONTIGS   
-   |--LOG FOLDER 
+
+.
+├── log_folder/
+├── virus_host_taxonomy_network.png
+
+├── purify_virus_contigs/
+│   ├── contigs_determined.fasta
+│   ├── contigs_determined.csv
+│   ├── contigs_not_determined.fasta
+│   ├── checkv_on_contigs/
+│   │   └── quality_summary.tsv
+│   └── genomad_on_contigs_v/
+│       └── contigs_summary/
+│           ├── contigs_summary.json
+│           └── contigs_virus_summary.tsv
+
+├── purify_virus_bins/
+│   ├── bins_virus.fasta
+│   ├── bins_not_virus.fasta
+│   ├── viral_bin_scaffold.csv
+│   ├── viral_bin_scaffold_clean.csv
+│   ├── not_viral_bin_scaffold.csv
+
+│   ├── before_purify/
+│   │   └── quality_summary.tsv
+
+│   ├── virus/
+│   │   ├── checkv/
+│   │   │   └── quality_summary.tsv
+│   │   ├── genomad/
+│   │   │   └── bins_virus_summary/
+│   │   │       ├── bins_virus_summary.json
+│   │   │       └── bins_virus_virus_summary.tsv
+│   │   └── iphop/
+│   │       ├── bins_virus_clean.fna
+│   │       └── Wdir/
+│   │           └── All_scores_iPHoP_by_instance.csv
+
+│   ├── non_virus/
+│   │   ├── CHECKM_2/
+│   │   │   └── quality_report.tsv
+│   │   └── irep/
+│   │       └── replication_irep.csv
+
+│   └── purify_vhryme_checkv_binning/
+│       ├── bin_determined.fasta
+│       ├── Modified_Coverage.tsv
+│       ├── checkv_for_bin_determined/
+│       │   └── quality_summary.tsv
+│       ├── checkv_with_VRhyme/
+│       │   └── quality_summary.tsv
+│       ├── genomad_for_bin_determined/
+│       │   └── bin_determined_summary/
+│       │       ├── bin_determined_summary.json
+│       │       └── bin_determined_virus_summary.tsv
+│       └── virus_binning/
+│           └── vrhyme_output/
+│               ├── vRhyme_best_bins.summary.tsv
+│               └── vRhyme_best_bins.membership.tsv
 
 
-   metaIVP OUTPUT FOLDER
-   |--PURIFY BINS 
-   |     |-- 
-
-   |
-   |
-   |
-   |--PURIFY CONTIGS   
-   |--LOG FOLDER 
 </pre>
 
 
@@ -158,10 +201,19 @@ metaIVP OUTPUT FOLDER
 Output Dataframes:
 
 
-| Dataframe	| Assembly      | Reference    | Description (A: Assembly, R: Reference|
-| ------------- | ------------- | ------------ | ----------- |
-| iRep.CSV       | Assembly_mapping_result_coding.csv  | Reference_mapping_result_coding.csv | Coding region mutation information |
-| Contigs_determined.csv       | Assembly_mapping_result_non_coding.csv  | Reference_mapping_result_non_cds_gene.csv | A: Non-coding level information R: Non-CDS gene information |
+| Dataframe	| Description |
+| ------------- | ----------- |
+| replication_irep      | Replication rate consolidated file for each purified bin |
+| contigs_determined.csv      | Determined viral contigs |
+| contigs_not_determined.csv      | Non-Determined viral contigs (moved to metagenome side) |
+| quality_summary.csv       | CheckV quality summary |
+| virus_summary.csv       | Genomad viral quality summary |
+| virus_taxonomy.csv       | Genomad viral taxonomy summary |
+| vRhyme_best_bins.membership.tsv | vrhyme membership file for viral bins |
+
+
+
+
 
 
 
