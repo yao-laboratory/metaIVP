@@ -136,8 +136,6 @@ metaIVP OUTPUT FOLDER
 
 .
 ├── log_folder/
-├── virus_host_taxonomy_network.png
-
 ├── purify_virus_contigs/
 │   ├── contigs_determined.fasta
 │   ├── contigs_determined.csv
