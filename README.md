@@ -3,15 +3,15 @@
 ------------
 ## Table of Contents
 
-* [Introduction](#INTRODUCTION)
+* [Introduction](#1.-INTRODUCTION)
 
 * [Installation](#INSTALLATION)
 
-* [Tutorial](##TUTORIAL)
+* [Tutorial](#TUTORIAL)
 
-* [Output](##OUTPUT)
+* [Output](#OUTPUT)
 
-* [Dependencies](##DEPENDENCIES)
+* [Dependencies](#DEPENDENCIES)
 
 * [Log folder structure](##LOG_FILE_STRUCTURE)
 
