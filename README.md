@@ -15,7 +15,7 @@
 
 * [Log folder structure](##LOG_FILE_STRUCTURE)
 
-* [SPECIAL TIPS FOR USERS](##SPECIAL_TIPS_FOR_USER)
+* [Special tips for users](##SPECIAL_TIPS_FOR_USER)
 
 ## 1. INTRODUCTION
 metaIVP
