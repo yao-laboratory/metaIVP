@@ -3,20 +3,14 @@
 ------------
 ## Table of Contents
 
-* [Introduction](#1.-INTRODUCTION)
-
-* [Installation](#2.-INSTALLATION)
-
-* [Tutorial](#3.-TUTORIAL)
-
-* [Output](#4.-OUTPUT)
-
-* [Dependencies](#5.-DEPENDENCIES)
-
-* [Log folder structure](#6.-LOG_FILE_STRUCTURE)
-
-* [Special tips for users](#7.-SPECIAL_TIPS_FOR_USER)
-
+## Table of Contents
+* [Introduction](#1-introduction)
+* [Installation](#2-installation)
+* [Tutorial](#3-tutorial)
+* [Output](#4-output)
+* [Dependencies](#5-dependencies)
+* [Log folder structure](#6-log-folder-structure)
+* [Special tips for users](#7-special-tips-for-users)
 ## 1. INTRODUCTION
 
 metaIVP
