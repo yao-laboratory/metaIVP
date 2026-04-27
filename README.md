@@ -9,7 +9,7 @@
 * [Tutorial](#3-tutorial)
 * [Output](#4-output)
 * [Dependencies](#5-dependencies)
-* [Log folder structure](#6-log-folder-structure)
+* [Log file structure](#6-log-file-structure)
 * [Special tips for users](#7-special-tips-for-users)
 ## 1. INTRODUCTION
 
@@ -202,7 +202,6 @@ Output Dataframes:
 
 
 
-
 -------------
 ## 5. DEPENDENCIES 
 
@@ -255,7 +254,7 @@ post_processing_viral_binning.log: Documents viral genome binning operations.
 post_processing_virus_binning_vrhyme.log : Documents viral bins generated from vRhyme.
 
 -------------
-## 7.SPECIAL TIPS FOR USERS
+## 7. SPECIAL TIPS FOR USERS
 
 1) All the INPUT files for metaIVP were obtained from metaIMP (https://github.com/yao-laboratory/metaIMP). Users can either run metaIMP assembly pipeline/generate their own input files.
 
