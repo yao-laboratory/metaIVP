@@ -3,9 +3,9 @@
 ------------
 ## Table of Contents
 
-* [Introduction](##INTRODUCTION)
+* [Introduction](#INTRODUCTION)
 
-* [Installation](##INSTALLATION)
+* [Installation](#INSTALLATION)
 
 * [Tutorial](##TUTORIAL)
 
@@ -18,6 +18,7 @@
 * [Special tips for users](##SPECIAL_TIPS_FOR_USER)
 
 ## 1. INTRODUCTION
+
 metaIVP
 Integrated Viral Purification and Analysis Pipeline for Metagenomes
 
