@@ -13,9 +13,9 @@
 
 * [Dependencies](##DEPENDENCIES)
 
-* [Log folder structure](##LOG FILE STRUCTURE)
+* [Log folder structure](##LOG_FILE_STRUCTURE)
 
-* [SPECIAL TIPS FOR USERS](##SPECIAL TIPS FOR USER)
+* [SPECIAL TIPS FOR USERS](##SPECIAL_TIPS_FOR_USER)
 
 ## 1. INTRODUCTION
 metaIVP
