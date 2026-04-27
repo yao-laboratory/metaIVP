@@ -30,16 +30,9 @@ Improved separation of viral and cellular signals
 Recovery of high-quality viral genomes
 Robust downstream analysis (annotation, host prediction, replication dynamics)
 
- Workflow
+Workflow
 
 <img src="./Figure1.svg" width="500" height="600"/>
-
-Key Design Principles
- Cross-scale purification (contig ↔ bin)
- Consensus classification across multiple tools
- Modular architecture
- Biologically interpretable outputs
-
 
 -------------
 ## 2. INSTALLATION
@@ -228,61 +221,51 @@ Enhanced viral bin recovery
 -------------
 ## 6. LOG FILE STRUCTURE
 
+6.1. Log file list:
 
-purify_contigs.log : 1) purify_contigs_checkv.log 2) purify_contigs_genomad.log
+A) purify_contigs.log : 1) purify_contigs_checkv.log 2) purify_contigs_genomad.log
 
+B) purify_bins.log : 1) purify_bins_checkv.log 
 
-
-purify_bins.log : 1) purify_bins_checkv.log 
-
-
-
-post_processing_non_virus.log : 1) post_processing_non_virus_samtools.log 2)post_processing_non_virus_binning.log 3) post_processing_non_virus_irep.log 4) post_processing_non_virus_checkm2.log
+C) post_processing_non_virus.log : 1) post_processing_non_virus_samtools.log 2)post_processing_non_virus_binning.log 3) post_processing_non_virus_irep.log 4) post_processing_non_virus_checkm2.log
 
 
-
-post_processing_viral_binning.log: 1) post_processing_virus_checkv.log 2) post_processing_virus_genomad.log 3) post_processing_virus_iphop.log 4) post_processing_virus_binning_vrhyme.log 5) post_processing_virus_checkv_with_vrhyme.log
-
+D) post_processing_viral_binning.log: 1) post_processing_virus_checkv.log 2) post_processing_virus_genomad.log 3) post_processing_virus_iphop.log 4) post_processing_virus_binning_vrhyme.log 5) post_processing_virus_checkv_with_vrhyme.log
 
 
-
-#purify_contigs_checkv.log: Tracks quality checks on contigs during purification with CheckV.
-#purify_contigs_genomad.log: Logs contamination detection on contigs during purification using Genomad.
-#purify_contigs.log: General log for contig purification steps.
+6.2. Log file description:
 
 
-#purify_contigs.log: General log for contig purification steps.
-	#purify_contigs_checkv.log: Tracks quality checks on contigs during purification with CheckV.
-	#purify_contigs_genomad.log: Logs contamination detection on contigs during purification using Genomad.
+purify_contigs.log: General log for contig purification steps.
+purify_contigs_checkv.log: Tracks quality checks on contigs during purification with CheckV.
+purify_contigs_genomad.log: Logs contamination detection on contigs during purification using Genomad.
 
-#purify_bins.log: Records bin purification processes.
-	#purify_bins_checkv.log: Logs quality control of bins during purification using CheckV.
-    
+purify_bins.log: Records bin purification processes.
+purify_bins_checkv.log: Logs quality control of bins during purification using CheckV for contig level purification.
+purify_contigs_genomad.log : Logs genomad process for contig level purification.    
 
-
-    #post_processing_non_virus.log: General log for non-viral post-processing steps.
-	#post_processing_non_virus_binning.log: Logs the binning process for non-viral genomic data.
-	#post_processing_non_virus_samtools.log: Logs alignment and mapping stats for non-viral data using samtools.
-	#post_processing_non_virus_checkm2.log: Records quality assessment of non-viral bins using CheckM2.
-	#post_processing_non_virus_irep.log: Tracks replication rate analysis on non-viral genomes with iRep.
-
+post_processing_non_virus.log: General log for non-viral post-processing steps.
+post_processing_non_virus_binning.log: Logs the binning process for non-viral genomic data.
+post_processing_non_virus_samtools.log: Logs alignment and mapping stats for non-viral data using samtools.
+post_processing_non_virus_checkm2.log: Records quality assessment of non-viral bins using CheckM2.
+post_processing_non_virus_irep.log: Tracks replication rate analysis on non-viral genomes with iRep.
 
 
-    #post_processing_virus.log: General log of viral genome post-processing steps.
-	#post_processing_virus_iphop.log: Logs phage-host interaction predictions with iPHoP.
-	#post_processing_virus_genomad.log: Records contamination detection on viral genomes with Genomad.
-	#post_processing_virus_checkv.log: Logs viral genome quality checks using CheckV.
+post_processing_virus.log: General log of viral genome post-processing steps.
+post_processing_virus_iphop.log: Logs phage-host interaction predictions with iPHoP.
+post_processing_virus_genomad.log: Records contamination detection on viral genomes with Genomad.
+post_processing_virus_checkv.log: Logs viral genome quality checks using CheckV.
 
-    #post_processing_viral_binning.log: Documents viral genome binning operations.
-
-	#post_processing_virus_binning_vrhyme.log
+post_processing_viral_binning.log: Documents viral genome binning operations.
+post_processing_virus_binning_vrhyme.log : Documents viral bins generated from vRhyme.
 
 -------------
 ## 7.SPECIAL TIPS FOR USERS
 
-1) Utitity folder: Consists of "MVP_Utility" folder, for users to execute MVP pipeline (https://gitlab.com/ccoclet/mvp). "MVP_CHECK_GENOMAD" shell script allows post-processing of MVP-7B, viral fasta generated by this pipeline.
+1) All the INPUT files for metaIVP were obtained from metaIMP (https://github.com/yao-laboratory/metaIMP). Users can either run metaIMP assembly pipeline/generate their own input files.
 
-2) All the INPUT files for metaIVP were obtained from metaIMP (https://github.com/yao-laboratory/metaIMP). Users can either run metaIMP assembly pipeline/generate their own input files.
+2) In the example script, we ignore anything tagged with "underscore m". These inputs can be same "underscore v" inputs.
 
-3) In the example script, we ignore anything tagged with "underscore m". These inputs can be same "underscore v" inputs.
+3) Utitity folder: Consists of "MVP_Utility" folder, for users to execute MVP pipeline (https://gitlab.com/ccoclet/mvp). "MVP_CHECK_GENOMAD" shell script allows post-processing of MVP-7B, viral fasta generated by this pipeline.
 
+4) Log folder: metaIVP is a RESUSABLE, REPRODUCIBLE program, and not a bash script. Users can utilize the log folder functionality, to either run specific internal dependencies, or run the entire pipeline.
