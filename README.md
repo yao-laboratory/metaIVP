@@ -211,12 +211,12 @@ Output Dataframes:
 -------------
 ## 5. DEPENDENCIES 
 
-metaIMP – integrated metagenomic processing
-MVP – metagenomic viral pipeline
-metaIVP extends these approaches with:
-Iterative purification
-Cross-resolution integration
-Enhanced viral bin recovery
+This section describes tools/modules required by metaIVP:
+
+
+A) Python environment > v3.5
+
+B) Tools list: 1) CheckV 2) Genomad 3) vRhyme 4) iPHop 5) CHECKM2 6) Samtools 7) Bowtie2 8) iRep 
 
 -------------
 ## 6. LOG FILE STRUCTURE
