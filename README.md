@@ -5,17 +5,17 @@
 
 * [Introduction](#1.-INTRODUCTION)
 
-* [Installation](#INSTALLATION)
+* [Installation](#2.-INSTALLATION)
 
-* [Tutorial](#TUTORIAL)
+* [Tutorial](#3.-TUTORIAL)
 
-* [Output](#OUTPUT)
+* [Output](#4.-OUTPUT)
 
-* [Dependencies](#DEPENDENCIES)
+* [Dependencies](#5.-DEPENDENCIES)
 
-* [Log folder structure](##LOG_FILE_STRUCTURE)
+* [Log folder structure](#6.-LOG_FILE_STRUCTURE)
 
-* [Special tips for users](##SPECIAL_TIPS_FOR_USER)
+* [Special tips for users](#7.-SPECIAL_TIPS_FOR_USER)
 
 ## 1. INTRODUCTION
 
